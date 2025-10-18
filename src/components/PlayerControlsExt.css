@@ -1,0 +1,119 @@
+.player-controls-ext {
+  display: grid;
+  grid-template-columns: 150px 1fr 150px;
+  gap: 20px;
+  align-items: center;
+}
+
+.player-controls-ext .controls-left,
+.player-controls-ext .controls-center,
+.player-controls-ext .controls-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.player-controls-ext .controls-center {
+  justify-content: center;
+}
+
+.player-controls-ext .controls-right {
+  justify-content: flex-end;
+}
+
+.player-controls-ext .control-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 1.7rem;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all var(--transition-normal);
+  position: relative;
+}
+
+.player-controls-ext .control-btn:hover {
+  color: var(--text-primary);
+  background: var(--overlay-white-10);
+}
+
+.player-controls-ext .control-btn.active {
+  color: var(--color-primary);
+}
+
+.player-controls-ext .play-btn {
+  font-size: 2rem;
+  width: 70px;
+  height: 70px;
+}
+
+.player-controls-ext .play-btn:hover {
+  transform: scale(1.05);
+}
+
+.player-controls-ext .repeat-one {
+  position: absolute;
+  font-size: 0.6rem;
+  bottom: 8px;
+  right: 8px;
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+.player-controls-ext .volume-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 120px;
+}
+
+.player-controls-ext .volume-icon {
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+}
+
+.player-controls-ext .volume-slider {
+  width: 100px;
+  flex: 1;
+  height: 4px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: var(--overlay-white-20);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+.player-controls-ext .volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  background: var(--color-primary);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.player-controls-ext .volume-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.player-controls-ext .volume-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  background: var(--color-primary);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.player-controls-ext .volume-slider::-moz-range-thumb:hover {
+  transform: scale(1.2);
+}

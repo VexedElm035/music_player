@@ -1,0 +1,45 @@
+.playlists-container {
+  padding: 30px;
+  max-width: 1200px;
+}
+
+.playlists-container h1 {
+  color: var(--text-primary);
+  margin-bottom: 30px;
+  font-size: 2rem;
+}
+
+.playlists-info {
+  text-align: center;
+  padding: 80px 40px;
+  background: var(--overlay-white-5);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--border-subtle);
+}
+
+.playlists-icon {
+  font-size: 5rem;
+  color: var(--color-primary);
+  margin-bottom: 25px;
+}
+
+.playlists-info h2 {
+  color: var(--text-primary);
+  font-size: 2rem;
+  margin: 0 0 20px 0;
+}
+
+.playlists-info p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  margin: 15px 0;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.playlists-info .hint {
+  color: var(--text-tertiary);
+  font-size: 1rem;
+  margin-top: 20px;
+}

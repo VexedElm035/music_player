@@ -1,0 +1,55 @@
+#root {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.app-layout {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  background: var(--gradient-main);
+}
+
+.main-content {
+  flex: 1;
+  margin-left: 250px;
+  padding-bottom: 100px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Scrollbar styling */
+.main-content::-webkit-scrollbar {
+  width: 10px;
+}
+
+.main-content::-webkit-scrollbar-track {
+  background: var(--overlay-black-20);
+}
+
+.main-content::-webkit-scrollbar-thumb {
+  background: var(--color-primary-glow);
+  border-radius: 5px;
+}
+
+.main-content::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-glow-hover);
+}
+
+/* ========== RESPONSIVE: TABLET & MOBILE ========== */
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+    margin-top: 130px; /* Espacio para navigation horizontal + header (iconos + texto) */
+    padding-bottom: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    margin-top: 110px; /* Ajuste para mobile */
+  }
+}

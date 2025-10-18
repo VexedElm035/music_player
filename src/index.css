@@ -1,0 +1,180 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #0f0c29;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* ========== BASE COLORS ========== */
+  
+  /* Core Brand Colors */
+  --color-primary-base: #5f85db; /*#5f85db*/
+  --color-secondary-base: #8b5cf6; /*#8b5cf6*/
+  
+  /* Core Background Colors */
+  --color-bg-base: #252529;  /* Base background (el más neutro) #1a1a2e*/
+  
+  /* Derived Background Variations */
+  --color-bg-dark: color-mix(in srgb, var(--color-bg-base) 70%, #1c132a);      /* Más oscuro con tinte morado #0f0c29 */
+  --color-bg-medium: color-mix(in srgb, var(--color-bg-base) 50%, rgb(17, 15, 34));    /* Tinte morado medio  #302b63*/
+  --color-bg-light: color-mix(in srgb, var(--color-bg-base) 60%, #150d1c);     /* Tinte morado claro  #24243e*/
+  --color-bg-elevated: var(--color-bg-base);                                    /* Elementos elevados (base) */
+  
+  /* Core Neutral Colors */
+  --color-white: #ffffff;
+  --color-black: #000000;
+  
+  /* ========== DERIVED COLOR VARIATIONS ========== */
+  
+  /* Primary Color Variations */
+  --color-primary: var(--color-primary-base);
+  --color-primary-hover: color-mix(in srgb, var(--color-primary-base) 80%, white 20%);
+  --color-primary-light: color-mix(in srgb, var(--color-primary-base) 20%, transparent);
+  --color-primary-lighter: color-mix(in srgb, var(--color-primary-base) 15%, transparent);
+  --color-primary-subtle: color-mix(in srgb, var(--color-primary-base) 30%, transparent);
+  --color-primary-glow: color-mix(in srgb, var(--color-primary-base) 50%, transparent);
+  --color-primary-glow-hover: color-mix(in srgb, var(--color-primary-base) 70%, transparent);
+  
+  /* Secondary Color */
+  --color-secondary: var(--color-secondary-base);
+  
+  /* Background Colors */
+  --bg-primary: var(--color-bg-dark);
+  --bg-secondary: var(--color-bg-medium);
+  --bg-tertiary: var(--color-bg-light);
+  --bg-dark-1: var(--color-bg-elevated);
+  --bg-dark-2: color-mix(in srgb, var(--color-bg-dark) 95%, black 5%);
+  --bg-dark-3: color-mix(in srgb, var(--color-bg-elevated) 98%, transparent);
+  --bg-elevated: color-mix(in srgb, var(--color-bg-elevated) 95%, transparent);
+  --bg-elevated-hover: color-mix(in srgb, var(--color-bg-elevated) 95%, white 5%);
+  --bg-elevated-alt: color-mix(in srgb, var(--color-bg-elevated) 90%, black 10%);
+  
+  /* Gradient Backgrounds */
+  --gradient-main: linear-gradient(135deg, var(--color-bg-dark) 0%, var(--color-bg-medium) 50%, var(--color-bg-light) 100%);
+  --gradient-primary: linear-gradient(135deg, var(--color-primary-base) 0%, var(--color-secondary-base) 100%);
+  --gradient-playback-bar: linear-gradient(180deg, color-mix(in srgb, var(--color-bg-elevated) 95%, transparent) 0%, color-mix(in srgb, var(--color-bg-elevated) 90%, black 10%) 100%);
+  --gradient-playback-bar-hover: linear-gradient(180deg, color-mix(in srgb, var(--color-bg-elevated) 95%, white 5%) 0%, color-mix(in srgb, var(--color-bg-elevated) 85%, black 15%) 100%);
+  --gradient-expanded-player: linear-gradient(180deg, var(--color-bg-elevated) 0%, var(--bg-dark-2) 100%);
+  
+  /* Text Colors */
+  --text-primary: var(--color-white);
+  --text-secondary: color-mix(in srgb, var(--color-white) 73%, var(--color-bg-medium));
+  --text-tertiary: color-mix(in srgb, var(--color-white) 54%, var(--color-bg-medium));
+  --text-muted: color-mix(in srgb, var(--color-white) 35%, var(--color-bg-dark));
+  --text-disabled: color-mix(in srgb, var(--color-white) 37%, var(--color-bg-dark));
+  
+  /* White Overlays (for backgrounds/borders) */
+  --overlay-white-3: color-mix(in srgb, var(--color-white) 3%, transparent);
+  --overlay-white-5: color-mix(in srgb, var(--color-white) 5%, transparent);
+  --overlay-white-8: color-mix(in srgb, var(--color-white) 8%, transparent);
+  --overlay-white-10: color-mix(in srgb, var(--color-white) 10%, transparent);
+  --overlay-white-15: color-mix(in srgb, var(--color-white) 15%, transparent);
+  --overlay-white-20: color-mix(in srgb, var(--color-white) 20%, transparent);
+  
+  /* Black Overlays */
+  --overlay-black-20: color-mix(in srgb, var(--color-black) 20%, transparent);
+  --overlay-black-30: color-mix(in srgb, var(--color-black) 30%, transparent);
+  --overlay-black-40: color-mix(in srgb, var(--color-black) 40%, transparent);
+  --overlay-black-50: color-mix(in srgb, var(--color-black) 50%, transparent);
+  
+  /* Border Colors */
+  --border-subtle: color-mix(in srgb, var(--color-white) 10%, transparent);
+  --border-light: color-mix(in srgb, var(--color-white) 20%, transparent);
+  --border-primary: color-mix(in srgb, var(--color-primary-base) 30%, transparent);
+  --border-primary-strong: color-mix(in srgb, var(--color-primary-base) 40%, transparent);
+  
+  /* Shadow Colors */
+  --shadow-light: color-mix(in srgb, var(--color-black) 30%, transparent);
+  --shadow-medium: color-mix(in srgb, var(--color-black) 40%, transparent);
+  --shadow-strong: color-mix(in srgb, var(--color-black) 50%, transparent);
+  --shadow-primary: color-mix(in srgb, var(--color-primary-base) 30%, transparent);
+  
+  /* State Colors */
+  --state-hover-bg: color-mix(in srgb, var(--color-white) 8%, transparent);
+  --state-active-bg: color-mix(in srgb, var(--color-primary-base) 15%, transparent);
+  --state-active-border: color-mix(in srgb, var(--color-primary-base) 30%, transparent);
+  
+  /* Special Colors (legacy compatibility) */
+  --color-white-90: color-mix(in srgb, var(--color-white) 90%, transparent);
+  --color-white-87: color-mix(in srgb, var(--color-white) 87%, transparent);
+  --color-white-50: color-mix(in srgb, var(--color-white) 50%, transparent);
+  
+  /* ========== SPACING & SIZING ========== */
+  --border-radius-sm: 8px;
+  --border-radius-md: 10px;
+  --border-radius-lg: 12px;
+  
+  /* ========== TRANSITIONS ========== */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.4s ease;
+  --transition-cubic: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#root {
+  width: 100%;
+  height: 100vh;
+}
+
+a {
+  font-weight: 500;
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-primary-hover);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: 600;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input, button, select, textarea {
+  font-family: inherit;
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--overlay-black-20);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary-glow);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-glow-hover);
+}
