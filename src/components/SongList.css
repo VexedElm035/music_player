@@ -1,0 +1,211 @@
+/* SongList Container */
+.song-list-container {
+  background: var(--overlay-white-3);
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+}
+
+/* Header */
+.song-list-header {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 5px;
+  padding: 5px 2px;
+  background: var(--overlay-black-30);
+  color: var(--color-primary);
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+.song-list-header .header-number,
+.song-list-header .header-title {
+  display: flex;
+  align-items: center;
+}
+
+/* Song Items Container */
+.song-list-items {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Individual Song Item */
+.song-list-item {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 5px;
+  padding: 5px 2px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border-bottom: 1px solid var(--overlay-white-5);
+  align-items: center;
+}
+
+.song-list-item:last-child {
+  border-bottom: none;
+}
+
+.song-list-item:hover {
+  background: var(--state-hover-bg);
+}
+
+.song-list-item.active {
+  background: var(--state-active-bg);
+  color: var(--color-primary);
+}
+
+/* Song Number with Play Icon */
+.song-list-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 40px;
+  height: 40px;
+}
+
+.song-list-number .play-icon {
+  position: absolute;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+  font-size: 0.9rem;
+  color: var(--color-primary);
+}
+
+.song-list-number .number-text {
+  transition: opacity var(--transition-fast);
+  color: var(--text-tertiary);
+  font-size: 0.95rem;
+}
+
+.song-list-item:hover .song-list-number .play-icon,
+.song-list-item.active .song-list-number .play-icon {
+  opacity: 1;
+}
+
+.song-list-item:hover .song-list-number .number-text,
+.song-list-item.active .song-list-number .number-text {
+  opacity: 0;
+}
+
+/* Song Info Container */
+.song-list-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+  padding-right: 10px;
+}
+
+/* Song Title */
+.song-list-title {
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Song Meta (Artist & Album) */
+.song-list-meta {
+  display: flex;    
+  align-items: center;
+  gap: 5px;
+  font-size: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.song-list-meta .separator {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+/* Artist and Album */
+.song-list-artist,
+.song-list-album {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-tertiary);
+}
+
+/* Clickable Links */
+.song-list-artist.artist-link,
+.song-list-album.album-link {
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.song-list-artist.artist-link:hover,
+.song-list-album.album-link:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+/* Active Song State */
+.song-list-item.active .song-list-title {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.song-list-item.active .song-list-artist,
+.song-list-item.active .song-list-album {
+  color: var(--text-secondary);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .song-list-header,
+  .song-list-item {
+    grid-template-columns: 40px 1fr;
+    gap: 5px;
+    padding: 5px 2px;
+  }
+
+  .song-list-number {
+    width: 35px;
+    height: 35px;
+  }
+
+  .song-list-title {
+    font-size: 14px;
+  }
+
+  .song-list-meta {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .song-list-header,
+  .song-list-item {
+    grid-template-columns: 25px 1fr;
+    gap: 5px;
+    padding: 5px 2px;
+  }
+
+  .song-list-number {
+    width: 20px;
+    height: 20px;
+    .number-text {
+      font-size: 11px;
+    }
+  }
+  
+  
+
+  .song-list-title {
+    font-size: 11px;
+  }
+
+  .song-list-meta {
+    font-size: 11px;
+  }
+}

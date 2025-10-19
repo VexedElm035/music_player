@@ -9,10 +9,11 @@
   border-top: 1px solid var(--border-subtle);
   z-index: 1000;
   box-shadow: 0 -4px 20px var(--shadow-light);
-  cursor: pointer;
   transform: translateY(0);
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), background var(--transition-normal);
   will-change: transform;
+  display: flex;
+  flex-direction: column;
 }
 
 .playback-bar.hidden {
@@ -23,14 +24,31 @@
   background: var(--gradient-playback-bar-hover);
 }
 
+/* Progress bar en la parte superior */
+.progress-bar-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 6px;
+  z-index: 1;
+}
+
+.playback-container {
+  max-width: 100%;
+  padding-top: 15px;
+}
+
 .playback-content {
   max-width: 100%;
-  height: 100%;
-  padding: 15px 20px;
+  flex: 1;
+  padding: 10px 10px;
   display: grid;
   grid-template-columns: 300px 1fr;
   gap: 30px;
   align-items: center;
+  cursor: pointer;
 }
 
 .track-info {
@@ -108,10 +126,27 @@
 
 .playback-controls {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   gap: 10px;
   min-width: 0;
   cursor: default;
+}
+
+/* Control de visibilidad por breakpoint */
+.controls-mobile {
+  display: none;
+}
+
+.controls-tablet {
+  display: none;
+}
+
+.controls-desktop {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 /* ========== RESPONSIVE: TABLET ========== */
@@ -123,7 +158,7 @@
   .playback-content {
     grid-template-columns: 200px 1fr;
     gap: 15px;
-    padding: 10px 15px;
+    padding: 9px 9px;
   }
 
   .track-info {
@@ -137,42 +172,61 @@
   }
 
   .track-title-nav {
-    font-size: 1rem;
+    font-size: 13px;
   }
 
   .track-artist-nav {
-    font-size: 0.9rem;
+    font-size: 12px;
+  }
+
+  /* Mostrar controles tablet, ocultar mobile y desktop */
+  .controls-mobile {
+    display: none;
+  }
+
+  .controls-tablet {
+    display: flex;
+  }
+
+  .controls-desktop {
+    display: none;
   }
 }
 
 /* ========== RESPONSIVE: MOBILE ========== */
 @media (max-width: 480px) {
+  
   .playback-bar {
     height: 80px;
   }
 
   .playback-content {
-    grid-template-columns: 1fr;
+    display: flex;
+    justify-content: space-between;
+    /* grid-template-columns: 1fr; */
     gap: 8px;
-    padding: 8px 10px;
+    padding: 7px 7px;
+    padding-right: 20px;
   }
 
   .track-info {
     max-width: 100%;
-    gap: 8px;
+    gap: 12px;
   }
 
   .track-cover {
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
   }
 
   .track-title-nav {
-    font-size: 0.9rem;
+    font-size: 11px;
+    text-align: left;
   }
 
   .track-artist-nav {
-    font-size: 0.8rem;
+    font-size: 10px;
+    text-align: left;
   }
 
   .playback-controls {
@@ -181,5 +235,18 @@
 
   .no-track {
     font-size: 0.85rem;
+  }
+
+  /* Mostrar controles mobile, ocultar tablet y desktop */
+  .controls-mobile {
+    display: flex;
+  }
+
+  .controls-tablet {
+    display: none;
+  }
+
+  .controls-desktop {
+    display: none;
   }
 }

@@ -3,57 +3,15 @@ import { useNavigate } from 'react-router-dom'
 import { useMusic } from '../context/MusicContext'
 import PlayerControlsExt from './PlayerControlsExt'
 import ProgressBar from './ProgressBar'
-import { FaTimes, FaMusic, FaPlay, FaPause } from 'react-icons/fa'
+import SongList from './SongList'
+import { FaTimes, FaMusic } from 'react-icons/fa'
 import './ExpandedPlayer.css'
-
-// Componente memoizado para cada item de la cola
-const QueueItem = memo(({ track, index, isCurrentSong, playing, onClick, onArtistClick, onAlbumClick }) => {
-  const handleArtistClick = (e) => {
-    e.stopPropagation()
-    onArtistClick(track.artist)
-  }
-
-  const handleAlbumClick = (e) => {
-    e.stopPropagation()
-    onAlbumClick(track.album)
-  }
-
-  return (
-    <div
-      className={`queue-item ${isCurrentSong ? 'active' : ''}`}
-      onClick={onClick}
-    >
-      <div className="queue-item-number">
-        {isCurrentSong && playing ? (
-          <FaPause className="queue-icon" />
-        ) : (
-          <FaPlay className="queue-icon" />
-        )}
-        <span className="number-text">{index + 1}</span>
-      </div>
-      <div className="queue-item-info">
-        <div className="queue-item-title">{track.title}</div>
-        <div className="queue-item-meta">
-          <span className="queue-item-artist artist-link" onClick={handleArtistClick}>
-            {track.artist}
-          </span>
-          <span className="separator"> • </span>
-          <span className="queue-item-album album-link" onClick={handleAlbumClick}>
-            {track.album}
-          </span>
-        </div>
-      </div>
-    </div>
-  )
-})
-
-QueueItem.displayName = 'QueueItem'
 
 const ExpandedPlayer = ({ isExpanded, onClose }) => {
   const { currentTrack, currentCover, playbackContext, currentIndex, playing, playAt } = useMusic()
   const navigate = useNavigate()
 
-  const handleQueueItemClick = useCallback((index) => {
+  const handleQueueItemClick = useCallback((song, index) => {
     playAt(index)
   }, [playAt])
 
@@ -127,26 +85,22 @@ const ExpandedPlayer = ({ isExpanded, onClose }) => {
         {/* Queue */}
         <div className="queue-section">
           <h3 className="queue-title">Cola de reproducción</h3>
-          <div className="queue-list">
-            {playbackContext.length === 0 ? (
-              <div className="empty-queue">
-                <p>No hay canciones en la cola</p>
-              </div>
-            ) : (
-              playbackContext.map((track, index) => (
-                <QueueItem
-                  key={track.id}
-                  track={track}
-                  index={index}
-                  isCurrentSong={index === currentIndex}
-                  playing={playing}
-                  onClick={() => handleQueueItemClick(index)}
-                  onArtistClick={handleArtistClick}
-                  onAlbumClick={handleAlbumClick}
-                />
-              ))
-            )}
-          </div>
+          {playbackContext.length === 0 ? (
+            <div className="empty-queue">
+              <p>No hay canciones en la cola</p>
+            </div>
+          ) : (
+            <SongList
+              songs={playbackContext}
+              onSongClick={handleQueueItemClick}
+              currentTrack={playbackContext[currentIndex]}
+              playing={playing}
+              columns={{ title: true, artist: true, album: true }}
+              onArtistClick={handleArtistClick}
+              onAlbumClick={handleAlbumClick}
+              showHeader={false}
+            />
+          )}
         </div>
       </div>
     </div>

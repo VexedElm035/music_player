@@ -188,30 +188,45 @@
   padding-left: 10px;
 }
 
-.queue-list {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+.queue-section .song-list-container {
   max-height: 400px;
   overflow-y: auto;
+  border: none;
+  background: transparent;
 }
 
-.queue-list::-webkit-scrollbar {
+.queue-section .song-list-container::-webkit-scrollbar {
   width: 8px;
 }
 
-.queue-list::-webkit-scrollbar-track {
+.queue-section .song-list-container::-webkit-scrollbar-track {
   background: var(--overlay-white-5);
   border-radius: 4px;
 }
 
-.queue-list::-webkit-scrollbar-thumb {
+.queue-section .song-list-container::-webkit-scrollbar-thumb {
   background: var(--color-primary-glow);
   border-radius: 4px;
 }
 
-.queue-list::-webkit-scrollbar-thumb:hover {
+.queue-section .song-list-container::-webkit-scrollbar-thumb:hover {
   background: var(--color-primary-glow-hover);
+}
+
+.queue-section .song-list-item {
+  background: var(--overlay-white-3);
+  border-radius: var(--border-radius-sm);
+  border: 1px solid var(--overlay-white-5);
+  margin-bottom: 5px;
+}
+
+.queue-section .song-list-item:hover {
+  transform: translateX(5px);
+}
+
+.queue-section .song-list-item.active {
+  background: var(--color-primary-light);
+  border-color: var(--border-primary-strong);
 }
 
 .empty-queue {
@@ -225,121 +240,6 @@
   font-size: 1.1rem;
 }
 
-.queue-item {
-  display: grid;
-  grid-template-columns: 50px 1fr;
-  gap: 15px;
-  padding: 12px 15px;
-  background: var(--overlay-white-3);
-  border-radius: var(--border-radius-sm);
-  border: 1px solid var(--overlay-white-5);
-  cursor: pointer;
-  transition: all var(--transition-fast);
-  align-items: center;
-}
-
-.queue-item:hover {
-  background: var(--state-hover-bg);
-  transform: translateX(5px);
-}
-
-.queue-item.active {
-  background: var(--color-primary-light);
-  border-color: var(--border-primary-strong);
-}
-
-.queue-item-number {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  width: 40px;
-  height: 40px;
-}
-
-.queue-item-number .queue-icon {
-  position: absolute;
-  opacity: 0;
-  transition: opacity var(--transition-fast);
-  font-size: 0.9rem;
-  color: var(--color-primary);
-}
-
-.queue-item-number .number-text {
-  transition: opacity var(--transition-fast);
-  color: var(--text-tertiary);
-  font-size: 0.95rem;
-}
-
-.queue-item:hover .queue-icon,
-.queue-item.active .queue-icon {
-  opacity: 1;
-}
-
-.queue-item:hover .number-text,
-.queue-item.active .number-text {
-  opacity: 0;
-}
-
-.queue-item-info {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  min-width: 0;
-}
-
-.queue-item-title {
-  color: var(--text-primary);
-  font-size: 1rem;
-  font-weight: 500;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.queue-item-meta {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.queue-item-meta .separator {
-  color: var(--text-muted);
-  font-size: 0.8rem;
-}
-
-.queue-item-artist,
-.queue-item-album {
-  color: var(--text-tertiary);
-  font-size: 0.9rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.queue-item-artist.artist-link,
-.queue-item-album.album-link {
-  cursor: pointer;
-  transition: color var(--transition-fast);
-}
-
-.queue-item-artist.artist-link:hover {
-  color: var(--color-primary);
-  text-decoration: underline;
-}
-
-.queue-item-album.album-link:hover {
-  color: var(--color-primary);
-  text-decoration: underline;
-}
-
-.queue-item.active .queue-item-title {
-  color: var(--color-primary);
-}
-
 /* Responsive */
 @media (max-width: 768px) {
   .album-art-container {
@@ -348,13 +248,8 @@
   }
 
   .album-art-glow {
-    width: 280px;
-    height: 280px;
-  }
-
-  .album-art {
-    width: 220px;
-    height: 220px;
+    width: 180px;
+    height: 180px;
   }
 
   .album-art-icon {
@@ -372,5 +267,15 @@
   .expanded-player-content {
     padding: 20px;
     gap: 30px;
+  }
+}
+@media (max-width: 480px) {   
+  .expanded-player::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+ 
+  .expanded-controls {
+    padding: 0 10px;
   }
 }

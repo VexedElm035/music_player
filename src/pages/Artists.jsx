@@ -1,7 +1,8 @@
 import React, { useState, useMemo, memo, useCallback, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useMusic } from '../context/MusicContext'
-import { FaArrowLeft, FaPlay, FaPause } from 'react-icons/fa'
+import { FaArrowLeft } from 'react-icons/fa'
+import SongList from '../components/SongList'
 import './Artists.css'
 
 // Componente memoizado para cada item de artista
@@ -24,41 +25,8 @@ const ArtistListItem = memo(({ artist, onClick }) => {
 
 ArtistListItem.displayName = 'ArtistListItem'
 
-// Componente memoizado para cada canción del artista
-const ArtistSongItem = memo(({ song, index, onClick, onAlbumClick }) => {
-  const { playing, currentTrack } = useMusic()
-  const isCurrentSong = currentTrack?.id === song.id
-  
-  const handleAlbumClick = (e) => {
-    e.stopPropagation()
-    onAlbumClick(song.album)
-  }
-  
-  return (
-    <div 
-      className={`song-item ${isCurrentSong ? 'active' : ''}`}
-      onClick={onClick}
-    >
-      <span className="song-number">
-        {isCurrentSong && playing ? (
-          <FaPause className="play-icon" />
-        ) : (
-          <FaPlay className="play-icon" />
-        )}
-        <span className="number-text">{index + 1}</span>
-      </span>
-      <span className="song-title">{song.title}</span>
-      <span className="song-album album-link" onClick={handleAlbumClick}>
-        {song.album}
-      </span>
-    </div>
-  )
-})
-
-ArtistSongItem.displayName = 'ArtistSongItem'
-
 const Artists = () => {
-  const { queue, playFromContext } = useMusic()
+  const { queue, playFromContext, currentTrack, playing } = useMusic()
   const location = useLocation()
   const navigate = useNavigate()
   const [selectedArtist, setSelectedArtist] = useState(null)
@@ -99,7 +67,7 @@ const Artists = () => {
     }
   }, [location.state, artists])
 
-  const handlePlaySong = useCallback((song) => {
+  const handlePlaySong = useCallback((song, index) => {
     // Reproducir desde el contexto de las canciones del artista
     playFromContext(selectedArtist.songs, song)
   }, [selectedArtist, playFromContext])
@@ -127,22 +95,15 @@ const Artists = () => {
           </div>
         </div>
 
-        <div className="songs-list">
-          <div className="songs-header">
-            <span className="song-number">#</span>
-            <span className="song-title">Título</span>
-            <span className="song-album">Álbum</span>
-          </div>
-          {selectedArtist.songs.map((song, index) => (
-            <ArtistSongItem
-              key={song.id}
-              song={song}
-              index={index}
-              onClick={() => handlePlaySong(song)}
-              onAlbumClick={handleAlbumClick}
-            />
-          ))}
-        </div>
+        <SongList
+          songs={selectedArtist.songs}
+          onSongClick={handlePlaySong}
+          currentTrack={currentTrack}
+          playing={playing}
+          columns={{ title: true, artist: false, album: true }}
+          onAlbumClick={handleAlbumClick}
+          showHeader={true}
+        />
       </div>
     )
   }

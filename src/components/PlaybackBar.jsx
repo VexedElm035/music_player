@@ -2,6 +2,7 @@ import React, { useState, memo, useCallback } from 'react'
 import { useMusic } from '../context/MusicContext'
 import ProgressBar from './ProgressBar'
 import PlayerControls from './PlayerControls'
+import PlayerControlsAdv from './PlayerControlsAdv'
 import ExpandedPlayer from './ExpandedPlayer'
 import './PlaybackBar.css'
 
@@ -52,14 +53,30 @@ const PlaybackBar = () => {
 
   return (
     <>
-      <div className={`playback-bar ${isExpanded ? 'hidden' : ''}`} onClick={handleBarClick}>
-        <div className="playback-content">
-          <div className="track-info">
-            <TrackInfo currentTrack={currentTrack} currentCover={currentCover} />
-          </div>
-          <div className="playback-controls" onClick={(e) => e.stopPropagation()}>
-            <PlayerControls />
-            <ProgressBar />
+      <div className={`playback-bar ${isExpanded ? 'hidden' : ''}`}>
+        <div className="progress-bar-top">
+          <ProgressBar showTime={false} showThumb={false} compact={true} />
+        </div>
+        <div className="playback-container">
+          <div className="playback-content" onClick={handleBarClick}>
+            <div className="track-info">
+              <TrackInfo currentTrack={currentTrack} currentCover={currentCover} />
+            </div>
+            <div className="playback-controls" onClick={(e) => e.stopPropagation()}>
+              {/* Mobile: Solo play/pause */}
+              <div className="controls-mobile">
+                <PlayerControls showPrev={true} showPlay={true} showNext={true} />
+              </div>
+              {/* Tablet: Prev, Play, Next */}
+              <div className="controls-tablet">
+                <PlayerControls showPrev={true} showPlay={true} showNext={true} />
+              </div>
+              {/* Desktop: Todos los controles */}
+              <div className="controls-desktop">
+                <PlayerControlsAdv />
+                <PlayerControls showPrev={true} showPlay={true} showNext={true} />
+              </div>
+            </div>
           </div>
         </div>
       </div>

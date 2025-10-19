@@ -1,14 +1,30 @@
 .progress-bar {
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 12px;
   width: 100%;
 }
 
+.progress-bar input {
+  width: 100%;
+}
+
+.progress-bar-info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.progress-bar.compact {
+  gap: 0;
+  padding: 0;
+}
+
 .time-label {
   color: var(--text-tertiary);
   font-size: 0.85rem;
-  min-width: 45px;
+  min-width: 30px;
   text-align: center;
   font-variant-numeric: tabular-nums;
 }
@@ -23,6 +39,11 @@
   outline: none;
   cursor: pointer;
   position: relative;
+}
+
+/* Modo compacto - slider sin bordes redondeados */
+.compact .progress-slider {
+  border-radius: 0;
 }
 
 /* Webkit (Chrome, Safari, Edge) - Track con degradado dinámico */
@@ -47,6 +68,15 @@
     color-mix(in srgb, var(--color-white) 20%, transparent) var(--progress, 0%), 
     color-mix(in srgb, var(--color-white) 8%, transparent) 100%
   );
+}
+
+/* Modo compacto - track sin bordes redondeados */
+.compact .progress-slider::-webkit-slider-runnable-track {
+  border-radius: 0;
+}
+
+.compact .progress-slider::-moz-range-track {
+  border-radius: 0;
 }
 
 /* Webkit Thumb - Visible e interactivo */
@@ -93,6 +123,24 @@
 
 .progress-slider::-moz-range-thumb:active {
   transform: scale(1.1);
+}
+
+/* Modo sin thumb (solo visual) */
+.progress-slider.no-thumb {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.progress-slider.no-thumb::-webkit-slider-thumb {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+.progress-slider.no-thumb::-moz-range-thumb {
+  width: 0;
+  height: 0;
+  opacity: 0;
 }
 
 /* Versión opcional: barra solo visual sin thumb (agregar clase .visual-only) */

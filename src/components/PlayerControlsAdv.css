@@ -1,0 +1,174 @@
+.player-controls-adv {
+  display: grid;
+  grid-template-columns: 150px 200px;
+  gap: 20px;
+  align-items: center;
+}
+
+.controls-adv-left,
+.controls-adv-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.controls-adv-left {
+  width: 150px;
+}
+
+.controls-adv-right {
+  justify-content: flex-end;
+  width: 200px;
+}
+
+.control-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 1.3rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all var(--transition-normal);
+  position: relative;
+}
+
+.control-btn:hover {
+  color: var(--text-primary);
+  background: var(--overlay-white-10);
+}
+
+.control-btn.active {
+  color: var(--color-primary);
+}
+
+.repeat-one {
+  position: absolute;
+  font-size: 0.6rem;
+  bottom: 8px;
+  right: 8px;
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+.volume-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 120px;
+}
+
+.volume-icon {
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+}
+
+.volume-slider {
+  width: 100px;
+  flex: 1;
+  height: 4px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: var(--overlay-white-20);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  background: var(--color-primary);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.volume-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  background: var(--color-primary);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.volume-slider::-moz-range-thumb:hover {
+  transform: scale(1.2);
+}
+
+/* ========== RESPONSIVE: TABLET ========== */
+@media (max-width: 768px) {
+  .player-controls-adv {
+    grid-template-columns: 100px 150px;
+    gap: 10px;
+  }
+
+  .controls-adv-left,
+  .controls-adv-right {
+    width: auto;
+  }
+
+  .control-btn {
+    font-size: 1.1rem;
+    width: 35px;
+    height: 35px;
+  }
+
+  .volume-control {
+    min-width: 100px;
+    gap: 8px;
+  }
+
+  .volume-slider {
+    width: 80px;
+  }
+}
+
+/* ========== RESPONSIVE: MOBILE ========== */
+@media (max-width: 480px) {
+  .player-controls-adv {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+
+  .controls-adv-left {
+    order: 1;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+  }
+
+  .controls-adv-right {
+    order: 2;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .control-btn {
+    font-size: 1.5rem;
+    width: 32px;
+    height: 32px;
+  }
+
+  .volume-control {
+    min-width: auto;
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .volume-slider {
+    width: 100%;
+  }
+}
